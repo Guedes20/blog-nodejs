@@ -1,3 +1,6 @@
+// Carregar o dotenv
+require('dotenv').config();
+
 //Carregando modulos
 const express = require('express');
 const handlebars = require('express-handlebars');
@@ -6,6 +9,7 @@ const app = express();
 const mongoose = require('mongoose');
 const admin = require('./routes/admin');
 const path = require('path');
+
 //Configurações
 //bodyParser
 app.use(bodyParser.urlencoded({ extended: true }));
