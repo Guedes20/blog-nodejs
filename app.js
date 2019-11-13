@@ -20,7 +20,7 @@ app.set('view engine', 'handlebars');
 
 //Mongoose
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/blogapp').then(() => {
+mongoose.connect(MONGO_URL).then(() => {
    console.log("Conectado ao mongo")
 }).catch((err) => {
    console.log("Erro ao se conectar ao mongo : " + err)
@@ -33,7 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/admin', admin);
 
 //Outros
-const _PORT = 9991;
+const _PORT = (process.env.PORT ||  9991);
 app.listen(_PORT, () => {
    console.log("Servidor rodando na http://localhost:9991/admin");
 })
