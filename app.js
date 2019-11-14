@@ -1,5 +1,5 @@
 // Carregar o dotenv
-require('dotenv').config();
+//require('dotenv').config();
 
 //Carregando modulos
 const express = require('express');
@@ -9,6 +9,8 @@ const app = express();
 const mongoose = require('mongoose');
 const admin = require('./routes/admin');
 const path = require('path');
+const flash = require('connect-flash');
+
 
 //Configurações
 //bodyParser
@@ -20,7 +22,7 @@ app.set('view engine', 'handlebars');
 
 //Mongoose
 mongoose.Promise = global.Promise;
-mongoose.connect(MONGO_URL).then(() => {
+mongoose.connect("mongodb://localhost/blogapp").then(() => {
    console.log("Conectado ao mongo")
 }).catch((err) => {
    console.log("Erro ao se conectar ao mongo : " + err)
@@ -33,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/admin', admin);
 
 //Outros
-const _PORT = (process.env.PORT ||  9991);
+const _PORT = 9991;
 app.listen(_PORT, () => {
    console.log("Servidor rodando na http://localhost:9991/admin");
 })
