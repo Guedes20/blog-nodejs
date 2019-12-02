@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const Categorias = new Schema({
@@ -9,12 +9,12 @@ const Categorias = new Schema({
     slug:{
         type:String,
         required: true
-    },
-    date:{
-        type:Date,
-        required: Date.now()
+    }//,
+    //date:{
+      //  type:Date,
+        //required: Date.now()
   
-    }
+    //}
 });
 
 mongoose.model("categorias", Categorias);
