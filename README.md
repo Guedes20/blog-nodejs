@@ -1,2 +1,2 @@
 # BlogApp
-Projetos desenvolvidos com NodeJs e BootStrap.
+Criação de um blog projetos desenvolvidos com NodeJs e BootStrap.
