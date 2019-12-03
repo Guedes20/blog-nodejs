@@ -9,12 +9,11 @@ const Categorias = new Schema({
     slug:{
         type:String,
         required: true
-    }//,
-    //date:{
-      //  type:Date,
-        //required: Date.now()
-  
-    //}
+    },
+    date:{
+        type:Date,
+        Default: Date.now()
+    }
 });
 
 mongoose.model("categorias", Categorias);
