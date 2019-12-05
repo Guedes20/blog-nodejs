@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const Postagem = new Schema({
+const Postagens = new Schema({
     titulo:{
         type:String,
         required: true
@@ -23,9 +23,11 @@ const Postagem = new Schema({
         default: Date.now()
     },
     categoria:{
-        type: Schema.Types.ObjectId,
-        ref:categorias,
+        type: Schema.Types.ObjectId ,
+        ref: "categorias" ,
         required: true
     }
+})
 
-});
+mongoose.model("postagens", Postagens);
+
