@@ -6,7 +6,7 @@
 <div class="card">
     <div class="card-body">
         <h3>Nova Postagem:</h3>
-        <form action="/admim/postagens/nova" method="POST">
+        <form action="/admin/postagens/nova" method="POST">
             <label for="titulo">Titulo:</label>
             <input type="text" name="titulo" class="form-control" required>
             <label for="slug">Slug:</label>
@@ -27,7 +27,6 @@
                 </option>
                 {{/each}}
             </select>
-
             <button class="btn btn-success mt-3" type="submit">Criar Postagem</button>
         </form>
     </div>

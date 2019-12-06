@@ -97,11 +97,18 @@ router.post("/categorias/deletar", (req, res) => {
    }).catch((err) => {
       req.flash("error_msg", "Error ao deletar esta categoria " + err)
       res.redirect("/admin/categorias")
-   })
+   }) 
 })
 
+//Rotas Postagens
 router.get("/postagens", (req, res) => {
-   res.render("admin/postagens")
+    Postagem.find().populate("categoria").sort({data:"desc"}).then((postagens)=>{
+      res.render("admin/postagens",{postagens: postagens})
+ }).catch((err) =>{
+    req.flash("error_msg","Houve um erro ao listar as postagens")
+    res.redirect("/admin")
+ })
+
 })
 
 router.get("/postagens/add", (req, res) => {  
@@ -133,17 +140,20 @@ router.post("/postagens/nova", (req, res) => {
          categoria: req.body.categoria,
          slug: req.body.slug
       }
-   
+
     new Postagem(novaPostagem).save().then(() =>{
-       req.flash("sucess_msg", "Postagem salva com sucesso!")
+      console.log(novaPostagem)
+      req.flash("sucess_msg", "Postagem salva com sucesso!")
        res.redirect("/admin/postagens")
-     }).catch((err)=>{
+      
+      }).catch((err)=>{
        req.flash("error_msg", "Houve um erro ao salvar a postagem")
        res.redirect("/admin/postagens")
      })
 
    }
-
 })
+
+
 
 module.exports = router;
