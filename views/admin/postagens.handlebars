@@ -11,6 +11,9 @@
         <small>Categoria: {{categoria.nome}}</small>
     </div>
 </div>
+<div>
+     <a href="/admin/postagens/edit/{{_id}}"> <button class="btn btn-success mt-2"> Editar </button> </a>
+</div>
 {{else}}
 <p>Nenhuma postagem registrada</p>
 {{/each}}
