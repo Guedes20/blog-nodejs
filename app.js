@@ -11,6 +11,9 @@ require("./models/Postagem");
 const Postagem = mongoose.model("postagens");
 require("./models/Categoria");
 const Categoria = mongoose.model("categorias");
+const usuarios = require("./routes/usuario")
+const passport = require("passport")
+require("./config/auth")(passport)
 
 //Configurações
 //Sessao
@@ -19,6 +22,9 @@ app.use(session({
    resave: true,
    saveUninitialized: true
 }))
+//Passport
+app.use(passport.initialize())
+app.use(passport.session())
 
 //Flash
 app.use(flash())
@@ -50,11 +56,9 @@ mongoose.connect('mongodb://localhost/blogapps', { useNewUrlParser: true }).then
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Rotas
-app.use('/admin', admin);
 
 app.get('/', (req, res) => {
    Postagem.find().populate("categoria").sort({ data: "desc" }).then((postagens) => {
-      console.log(postagens)
       res.render("index", { postagens: postagens })
    }).catch((err) => {
       req.flash("error_msg", "Houve um error interno.")
@@ -69,7 +73,6 @@ app.get('/', (req, res) => {
 
 app.get("/postagem/:slug", (req, res) => {
    Postagem.findOne({ slug: req.params.slug }).then((postagem) => {
-      console.log(postagem);
       if (postagem) {
          res.render("postagem/index", { postagem: postagem });
       } else {
@@ -93,9 +96,12 @@ app.get("/categorias", (req, res) => {
 })
 
 app.get("/categorias/:slug", (req, res) => {
-   Categoria.findOne().then((categoria) => {
+   Categoria.findOne({ slug: req.params.slug }).then((categoria) => {
+      console.log(categoria)
       if (categoria) {
          Postagem.find({ categoria: categoria._id }).then((postagens) => {
+         console.log(postagens)
+
            res.render("categorias/postagens", {postagens:postagens , categoria:categoria})
          }).catch((err)=>{
              req.flash("error_msg", "Houve um erro ao listar os post!")
@@ -110,6 +116,9 @@ app.get("/categorias/:slug", (req, res) => {
       res.redirect("/");
    })
 })
+
+app.use('/admin', admin);
+app.use('/usuarios', usuarios);
 
 //Outros
 const _PORT = 9991;
