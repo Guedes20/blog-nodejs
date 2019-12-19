@@ -14,6 +14,7 @@ const Categoria = mongoose.model("categorias");
 const usuarios = require("./routes/usuario")
 const passport = require("passport")
 require("./config/auth")(passport)
+const db = require("./config/db")
 
 //Configurações
 //Sessao
@@ -33,6 +34,8 @@ app.use(flash())
 app.use((req, res, next) => {
    res.locals.success_msg = req.flash("sucess_msg")
    res.locals.error_msg = req.flash("error_msg")
+   res.locals.error = req.flash("error")
+   res.locals.user = req.user || null ;
    next()
 })
 
@@ -46,7 +49,7 @@ app.set('view engine', 'handlebars');
 
 //Mongoose
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/blogapps', { useNewUrlParser: true }).then(() => {
+mongoose.connect( db.mongoURI, { useNewUrlParser: true }).then(() => {
    console.log("Conectado ao mongo")
 }).catch((err) => {
    console.log("Erro ao se conectar ao mongo : " + err)
@@ -121,8 +124,8 @@ app.use('/admin', admin);
 app.use('/usuarios', usuarios);
 
 //Outros
-const _PORT = 9991;
-app.listen(_PORT, () => {
-   console.log("Servidor rodando na http://localhost:9991/admin");
+const PORT = process.env.PORT || 9991;
+app.listen(PORT, () => {
+   console.log("Servidor rodando na http://localhost:9991/");
 })
 

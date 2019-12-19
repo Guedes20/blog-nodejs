@@ -1,0 +1,20 @@
+{
+  "name": "ok",
+  "version": "1.0.0",
+  "description": "Criação de um blog projetos desenvolvidos com NodeJs e BootStrap.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Guedes20/nodejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Guedes20/nodejs/issues"
+  },
+  "homepage": "https://github.com/Guedes20/nodejs#readme"
+}
