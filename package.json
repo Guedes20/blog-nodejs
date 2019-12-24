@@ -7,6 +7,17 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
+  "dependencies": {
+    "express": "*",
+    "express-handlebars": "*",
+    "body-parser": "*",
+    "mongoose": "*",
+    "express-session": "*",
+    "connect-flash": "*",
+    "passport": "*",
+    "passport-local": "*",
+    "bcryptjs": "*"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Guedes20/nodejs.git"
