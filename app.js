@@ -61,18 +61,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Rotas
 
 app.get('/', (req, res) => {
-   Postagem.find().populate("categoria").sort({ data: "desc" }).then((postagens) => {
+   res.render("index") 
+   /*Postagem.find().populate("categoria").sort({ data: "desc" }).then((postagens) => {
       res.render("index", { postagens: postagens })
    }).catch((err) => {
       req.flash("error_msg", "Houve um error interno.")
       res.redirect("/404")
-   })
+   })*/
 
-   
-   app.get('/404', (req, res) => {
-      res.send("Error 404")
-   })
-
+   //app.get('/404', (req, res) => {
+    //  res.send("Error 404")
+  // })
 });
 
 app.get("/postagem/:slug", (req, res) => {
