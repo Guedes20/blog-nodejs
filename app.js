@@ -68,6 +68,7 @@ app.get('/', (req, res) => {
       res.redirect("/404")
    })
 
+   
    app.get('/404', (req, res) => {
       res.send("Error 404")
    })
