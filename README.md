@@ -1,2 +1,2 @@
-# BlogApp
-Criação de um blog projetos desenvolvidos com NodeJs e BootStrap.
+# TecnoBlog
+Criação de um blog desenvolvidos com NodeJS e BootStrap.
