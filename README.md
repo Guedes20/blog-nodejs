@@ -1,5 +1,5 @@
 # TecnoBlog
-Criação de um blog desenvolvidos com NodeJS e BootStrap .
+Criação de um blog desenvolvido com NodeJS e BootStrap .
 
 Dependecias utilizadas:
 
